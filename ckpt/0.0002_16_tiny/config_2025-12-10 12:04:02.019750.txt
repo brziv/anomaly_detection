@@ -1,0 +1,12 @@
+rgb_list: x3d_train.txt
+test_rgb_list: x3d_test.txt
+comment: tiny
+dropout_rate: 0.4
+attn_dropout_rate: 0.1
+lr: 0.0002
+batch_size: 16
+model_name: model
+model_arch: fast
+pretrained_ckpt: None
+max_epoch: 100
+warmup: 1
