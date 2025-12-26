@@ -3,7 +3,12 @@ import torch
 from torch import nn
 import option
 
-args=option.parse_args()
+# Avoid parsing CLI args at import time (some scripts import utils with their own CLI args).
+# If option.parse_args raises SystemExit due to unexpected argv, catch and set args to None.
+try:
+    args = option.parse_args()
+except SystemExit:
+    args = None
 
 
 def save_best_record(test_info, file_path):

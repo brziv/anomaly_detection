@@ -3,7 +3,16 @@ import argparse
 def parse_args():
     parser = argparse.ArgumentParser(description='STEAD')
     parser.add_argument('--rgb_list', default='x3d_train.txt', help='list of rgb features ')
-    parser.add_argument('--test_rgb_list', default='x3d_test.txt', help='list of test rgb features ')
+    parser.add_argument('--test_rgb_list', default='x3d_val.txt', help='list of test rgb features ')
+
+    # feature jsonl based lists and defaults
+    parser.add_argument('--features_json', default='features.jsonl', help='input features jsonl')
+    parser.add_argument('--features_train_list', default='train.jsonl', help='train jsonl list')
+    parser.add_argument('--features_val_list', default='val.jsonl', help='val jsonl list')
+    parser.add_argument('--features_test_list', default='test.jsonl', help='test jsonl list (video_path,label,fps)')
+    parser.add_argument('--val_fraction', type=float, default=0.1, help='validation fraction when splitting features.jsonl')
+    parser.add_argument('--test_fraction', type=float, default=0.1, help='test fraction when splitting features.jsonl')
+    parser.add_argument('--use_val', action='store_true', help='enable validation loader usage')
 
     parser.add_argument('--comment', default='tiny', help='comment for the ckpt name of the training')
 
@@ -21,5 +30,7 @@ def parse_args():
 
 
 
-    args = parser.parse_args()
+    args, unknown = parser.parse_known_args()
+    if len(unknown) > 0:
+        print(f"Warning: option.parse_args ignored unknown args: {unknown}")
     return args

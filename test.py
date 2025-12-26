@@ -6,7 +6,7 @@ from sklearn.metrics import auc, roc_curve, precision_recall_curve
 from tqdm import tqdm
 args=option.parse_args()
 from model import Model
-from dataset import Dataset
+from dataset_features import Dataset
 from torchinfo import summary
 import umap
 import numpy as np
